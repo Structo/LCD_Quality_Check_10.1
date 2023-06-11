@@ -1,0 +1,89 @@
+Steps to setup "LCD check for 10.1" LCD" PC at production Kallang:
+-------------------------
+Step 1: Install Ubuntu 20.04 OS to shuttle
+Step 1b: tick auto login without asking for password.
+Step 1c: disable the screen timeout to prevent log-in screen again.
+Settings -> Privacy -> Screen Lock
+Then turn off all the features, select "Never"
+Step 1d: set background to structo image logo.
+
+Step 2: Copy "lcd_check.sh" to desktop
+
+Step 3: Copy whole folder "Structo_LCD_check" into "/home/lcd-checkxx/" folder, replace "xx" with the correct number.
+
+Step 4: Edit path name in "lcd_check.sh" to match different computer name.
+Change permission and tick "executable" option.
+Note- in order for double click left mouse to execute the bash file on desktop, have to cd to the last folder, and only call bash of bash filename only. If call bash with full path, it does not work.
+
+Step 5: check python3 and tkinter are installed
+Step 6: check python3 version
+$ python3 --version
+output: Python 3.8.10
+
+Step 7: check whether tkinter are installed
+Step 7a:
+$ python3 
+=> enter python command
+=> import tkinter as tk
+tk._test()
+Output: if encounter: "ModuleNotFoundError: No module named 'tkinter'
+=> need to install tkinter
+Ctrl-D to exit python3 CLI
+Step 7b:
+$ sudo apt install python3-tk
+repeat "Step 7a", output should popup a new window showing "This is Tcl/Tk version 8.6"
+=> tkinter is installed successfully
+
+Step 8a: test run python script to see which modules are missing and need to install.
+$ python3 lcd_check_10.1.py
+Output: "ImportError: cannot import name 'ImageTk' from 'PIL' (/usr/lib/python3/dist-packages/PIL/__init__.py)
+=> need to install "Pillow" package
+
+Step 8b: check "pip" installed or not
+$ pip3 --verion
+output: Command 'pip3' not found, but can be installed with ...
+=> need to install 'pip3'
+Step 8c:
+$ sudo apt install python3-pip
+
+Step 8d:
+repeat step 8b again
+output: pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
+
+Step 8e: install "Pillow"
+$ pip3 install Pillow
+output: Requirement already satisfied: Pillow in /usr/lib/python3/dist-packages (7.0.0)
+
+Step 8f: repeat step 8a again, still encounter same error.
+
+Step 8g:
+$ sudo apt install python3-pil python3-pil.imagetk
+output: 
+Unpacking python3-pil.imagetk:amd64 (7.0.0-4ubuntu0.5) ...
+Setting up python3-pil.imagetk:amd64 (7.0.0-4ubuntu0.5) ...
+
+Step 8h: repeat step 8a again
+output: ModuleNotFoundError: No module named 'screeninfo'
+
+Step 8i: need to install screeninfo
+$ sudo pip3 install screeninfo
+output: Successfully installed screeninfo-0.8.1
+
+Step 8j: repeat step 8a again, able to open "Structo - LCD check for 10.1" LCD" program
+========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
